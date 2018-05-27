@@ -1,31 +1,33 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <iostream>
+#include <string>
+#include <cmath>
 
 class Bouton
 {
 public:
-	typedef enum
-	{
-		red,
-		blue,
-		green,
-		white
-	} color;
-
 	Bouton();
-	Bouton(float X, float Y, float w, float h, color c);
+	Bouton(float X, float Y, float w, float h, sf::Color c, std::string t);
 	~Bouton();
+	void update(float dt, sf::RenderWindow & win);
 	void draw(sf::RenderWindow & win);
-	void click();
+	void mouse(sf::RenderWindow & win);
+	void click(sf::RenderWindow & win);
+	bool clicked();
 private:
-	color buttonColor;
 	float x;
 	float y;
 	float width;
+	float widthMin;
+	float widthMax;
 	float height;
+	bool change;
+	std::string str;
 	bool mouseOn;
-	bool clicked;
+	bool m_clicked;
 	sf::RectangleShape rect;
+	sf::Font font;
+	sf::Text text;
 };
 
